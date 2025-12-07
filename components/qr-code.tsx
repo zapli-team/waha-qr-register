@@ -9,7 +9,7 @@ import { createSession, getAllSessions, getSession, getSessionQR, restartSession
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 function QRCode() {
-    const { sessionId } = useParams();
+    const { clientId } = useParams();
     const [qr, setQr] = useState("");
     const [isConnected, setIsConnected] = useState(false);
 
@@ -18,13 +18,13 @@ function QRCode() {
         isFetching,
         isError,
     } = useQuery({
-        queryKey: ["sessions", sessionId],
+        queryKey: ["sessions", clientId],
         queryFn: async () => {
-            if (typeof sessionId !== "string") return null;
+            if (typeof clientId !== "string") return null;
 
-            const sessions = await getAllSessions();
-            let session = sessions.find(({ name }) => name === sessionId);
-            if (!session) session = await createSession({ name: sessionId, start: false });
+            const sessions = await getAllSessions(clientId);
+            let session = sessions.find(({ name }) => name === "default");
+            if (!session) session = await createSession(clientId, { start: false });
 
             return session;
         },
@@ -37,18 +37,18 @@ function QRCode() {
         mutationFn: async () => {
             if (!session) return;
 
-            await restartSession(session);
-            const { value } = await getSessionQR(session);
+            await restartSession(clientId as string);
+            const { value } = await getSessionQR(clientId as string);
             setQr(value);
         },
     });
 
     const { mutate: checkStatus } = useMutation({
-        mutationKey: ["session-status", sessionId],
+        mutationKey: ["session-status", clientId],
         mutationFn: async () => {
-            if (typeof sessionId !== "string") return;
+            if (typeof clientId !== "string") return;
 
-            const session = await getSession(sessionId);
+            const session = await getSession(clientId);
             setIsConnected(session?.status === "WORKING");
         },
     });

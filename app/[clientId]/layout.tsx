@@ -1,12 +1,12 @@
 import { Metadata } from "next";
 
 type Props = {
-    params: Promise<{ sessionId: string }>;
+    params: Promise<{ clientId: string }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const { sessionId } = await params;
-    return { title: `${sessionId} | QR Scan` };
+    const { clientId } = await params;
+    return { title: `${clientId} | QR Scan` };
 }
 
 export default function SessionLayout({ children }: { children: React.ReactNode }) {

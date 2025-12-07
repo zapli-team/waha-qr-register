@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import { QRCodeCanvas } from "qrcode.react";
 import { useEffect, useState } from "react";
 
-import { createSession, getAllSessions, getSession, getSessionQR, restartSession } from "@/utils/funcs";
+import { createSession, getAllSessions, getSession, getSessionQR, restartSession } from "@/utils/actions";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 function QRCode() {

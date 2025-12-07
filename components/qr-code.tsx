@@ -66,7 +66,7 @@ function QRCode() {
             clearInterval(qrInterval);
             clearInterval(statusInterval);
         };
-    }, [session, isConnected]);
+    }, [session, isConnected, checkStatus, fetchQR]);
 
     if (isError)
         return (

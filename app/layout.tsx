@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "BRZLY QR Register",
-    description: "An app used to register clients to BRZLY's Waha with quick QR code scans.",
+    title: "Zapli QR Register",
+    description: "An app used to register clients to Zapli's Waha with quick QR code scans.",
 };
 
 export default function RootLayout({

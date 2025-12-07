@@ -15,32 +15,3 @@ export type Session = {
         }[];
     };
 };
-
-const x = {
-    name: "roy-barzilay",
-    status: "WORKING",
-    config: {
-        metadata: {},
-        webhooks: [
-            {
-                url: "https://n8n.brzly.com/webhook-test/moshe-talit-whatsapp-message",
-                events: ["message"],
-                hmac: {
-                    key: null,
-                },
-                retries: {
-                    delaySeconds: 2,
-                    attempts: 15,
-                    policy: "exponential",
-                },
-                customHeaders: null,
-            },
-        ],
-    },
-    me: {
-        id: "972527088557@c.us",
-        pushName: "Roy Barzilay",
-        jid: "972527088557:47@s.whatsapp.net",
-    },
-    assignedWorker: "",
-};
